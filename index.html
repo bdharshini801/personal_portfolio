@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Dharshini B. — Third-year Computer Science and Engineering student focused on Web Development.">
+  <meta name="theme-color" content="#111018">
+  <meta property="og:title" content="Dharshini B. | Developer Portfolio">
+  <meta property="og:description" content="Projects, skills, and experience of Dharshini B.">
+  <meta property="og:type" content="website">
+
+  <title>Dharshini B. | Web Developer Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+
+  <style>
+    .hero-split {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+      padding-bottom: 80px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .hero-main h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -3px;
+      margin: 25px 0;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      line-height: 1.8;
+    }
+
+    .hero-side-panel {
+      border: 1px solid var(--border-color, rgba(255,255,255,.13));
+      border-radius: 24px;
+      padding: 32px;
+      background: rgba(255,255,255,.035);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side-panel::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(145, 95, 255, .14);
+      filter: blur(65px);
+      top: -70px;
+      right: -50px;
+      pointer-events: none;
+    }
+
+    .hero-panel-label {
+      font-family: "JetBrains Mono", monospace;
+      color: #a98bff;
+      font-size: .8rem;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+    }
+
+    .hero-panel-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero-panel-description {
+      color: var(--text-muted, #aaa5b8);
+      line-height: 1.7;
+    }
+
+    .hero-focus-list {
+      list-style: none;
+      padding: 0;
+      margin: 25px 0 0;
+    }
+
+    .hero-focus-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+
+    .hero-focus-list li:last-child {
+      border-bottom: none;
+    }
+
+    .hero-focus-list i {
+      color: #a98bff;
+      font-size: 1.1rem;
+    }
+
+    .hero-panel-footer {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(145, 95, 255, .10);
+      color: #c3adff;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .8rem;
+    }
+
+    .category-card {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 28px;
+      background: rgba(255,255,255,.025);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: #9870ff;
+    }
+
+    .category-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .category-card h3 i {
+      color: #a98bff;
+      margin-right: 10px;
+    }
+
+    .category-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .category-tags span {
+      display: inline-block;
+      padding: 9px 15px;
+      border: 1px solid rgba(169,139,255,.3);
+      border-radius: 30px;
+      color: var(--text-color, #ddd);
+      background: rgba(145,95,255,.07);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .85rem;
+      transition: .2s ease;
+    }
+
+    .category-tags span:hover {
+      background: rgba(145,95,255,.2);
+      border-color: #a98bff;
+      transform: translateY(-2px);
+    }
+
+    .social-links a,
+    .footer-links a {
+      text-decoration: none;
+    }
+
+    .social-links a:not(:has(i)),
+    .footer-links a:not(:has(i)) {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 991px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-split {
+        min-height: auto;
+      }
+
+      .hero-main h1 {
+        letter-spacing: -2px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-side-panel {
+        padding: 23px;
+      }
+
+      .hero-main h1 {
+        font-size: 2.7rem;
+      }
+    }
+  </style>
+
+  <script>
+    (() => {
+      const saved = localStorage.getItem("portfolio-theme");
+      const preferred = matchMedia("(prefers-color-scheme: light)").matches
+        ? "light"
+        : "dark";
+
+      document.documentElement.dataset.theme = saved || preferred;
+    })();
+  </script>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top site-nav" aria-label="Main navigation">
+  <div class="container">
+
+    <a class="navbar-brand brand-mark" href="#home">
+      <span class="brand-bracket">&lt;</span>DB<span class="brand-bracket">/&gt;</span>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navMenu"
+      aria-controls="navMenu" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+        <li class="nav-item">
+          <button class="theme-toggle" id="themeToggle" type="button"
+            aria-label="Switch color theme">
+            <i class="bi bi-sun-fill"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HOME SECTION -->
+<section class="hero hero-split section-space" id="home"
+         aria-labelledby="hero-title">
+  <div class="hero-blob" aria-hidden="true"></div>
+
+  <div class="container position-relative">
+    <div class="hero-layout">
+
+      <div class="hero-main">
+
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          AVAILABLE FOR INTERNSHIPS
+        </p>
+
+        <h1 id="hero-title">
+          Hi, I'm <span class="text-gradient">Dharshini B.</span><br>
+          I build
+          <span class="typing-wrap">
+            <span id="typedText">useful things</span>
+            <span class="typing-caret">|</span>
+          </span>
+        </h1>
+
+        <p class="hero-copy">
+          A third-year Computer Science and Engineering student
+          focused on Web Development. I enjoy turning thoughtful
+          ideas into practical digital experiences, designing
+          clean user interfaces, and building applications that
+          solve real-world problems. Currently seeking internship
+          opportunities.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 hero-actions">
+
+          <a class="btn btn-accent" href="#projects">
+            View Projects <i class="bi bi-arrow-up-right"></i>
+          </a>
+
+          <a class="btn btn-outline-custom"
+             href="assets/resume.pdf"
+             download="Dharshini_Resume.pdf">
+            Download Resume <i class="bi bi-download"></i>
+          </a>
+
+        </div>
+
+        <div class="social-links mt-4" aria-label="Social and coding profiles">
+
+          <a href="https://github.com/bdharshini801"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="GitHub">
+            <i class="bi bi-github"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/dharshini-b-7b74043aa"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+          </a>
+
+          <a href="mailto:bdharshini801@gmail.com"
+             aria-label="Email">
+            <i class="bi bi-envelope"></i>
+          </a>
+
+          <a href="https://leetcode.com/u/dharshini9/"
+             target="_blank" rel="noopener noreferrer">LeetCode</a>
+
+          <a href="https://www.geeksforgeeks.org/profile/bdharshita1"
+             target="_blank" rel="noopener noreferrer">GFG</a>
+
+          <a href="https://www.skillrack.com/"
+             target="_blank" rel="noopener noreferrer">SkillRack</a>
+
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE PANEL -->
+      <aside class="hero-side-panel reveal">
+
+        <p class="hero-panel-label">01 / PROFILE OVERVIEW</p>
+
+        <h2 class="hero-panel-title">Aspiring Web Developer</h2>
+
+        <p class="hero-panel-description">
+          Building my technical foundation through programming,
+          hands-on projects, and continuous learning.
+        </p>
+
+        <ul class="hero-focus-list">
+          <li><i class="bi bi-mortarboard"></i><span>Third-year CSE Student</span></li>
+          <li><i class="bi bi-code-slash"></i><span>Java & Problem Solving</span></li>
+          <li><i class="bi bi-window"></i><span>Frontend & Web Development</span></li>
+          <li><i class="bi bi-database"></i><span>Backend & Database Basics</span></li>
+          <li><i class="bi bi-lightbulb"></i><span>Learning through Projects</span></li>
+        </ul>
+
+        <div class="hero-panel-footer">
+          <i class="bi bi-geo-alt"></i>
+          Tamil Nadu, India
+          <span class="float-end">2026</span>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section-space" id="about" aria-labelledby="about-title">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <p class="eyebrow">01 / ABOUT ME</p>
+      <h2 id="about-title">About <span class="text-gradient">Me.</span></h2>
+    </div>
+
+    <div class="row align-items-start mt-4 g-4">
+
+      <div class="col-lg-8 reveal">
+
+        <p class="about-copy">
+          I am a third-year Computer Science and Engineering student
+          at Prince Shri Venkateshwara Padmavathy Engineering College,
+          interested in Web Development. I enjoy exploring how
+          software can solve practical problems, from designing
+          clean user interfaces to building the logic behind
+          applications.
+        </p>
+
+        <p class="about-copy">
+          My technical interests include Java, Data Structures and
+          Algorithms, Frontend Development, Backend Development,
+          and Database Management. I continuously improve my
+          programming and problem-solving skills through coding
+          practice and hands-on projects.
+        </p>
+
+        <p class="about-copy">
+          I am passionate about learning new technologies and
+          developing practical applications that provide useful
+          solutions to real-world problems.
+        </p>
+
+        <p class="about-copy">
+          Currently, I am seeking internship opportunities where
+          I can apply my technical knowledge, gain industry
+          experience, collaborate with developers, and grow
+          as a software developer.
+        </p>
+
+        <a class="btn btn-outline-custom mt-2"
+           href="https://www.linkedin.com/in/dharshini-b-7b74043aa"
+           target="_blank" rel="noopener noreferrer">
+          Connect on LinkedIn <i class="bi bi-arrow-up-right"></i>
+        </a>
+
+      </div>
+
+      <div class="col-lg-4 reveal">
+        <div class="category-card h-100">
+
+          <h3><i class="bi bi-bullseye"></i> Career Interests</h3>
+          <div class="category-tags">
+            <span>Software Development</span>
+            <span>Full-Stack Development</span>
+          </div>
+
+          <hr>
+
+          <h3><i class="bi bi-code-slash"></i> Technical Interests</h3>
+          <div class="category-tags">
+            <span>Java</span>
+            <span>DSA</span>
+            <span>Web Development</span>
+            <span>Databases</span>
+          </div>
+
+          <hr>
+
+          <h3><i class="bi bi-briefcase"></i> Internship Objective</h3>
+          <p>
+            Seeking opportunities to apply my skills,
+            gain practical experience, and contribute
+            to real-world projects.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STATISTICS -->
+    <div class="stats-grid mt-5 reveal">
+
+      <div class="stat-card">
+        <strong>7.80</strong>
+        <span>CGPA</span>
+      </div>
+
+      <div class="stat-card">
+        <strong>170+</strong>
+        <span>LeetCode Problems Solved</span>
+      </div>
+
+      <div class="stat-card">
+        <strong>25+</strong>
+        <span>GeeksforGeeks Problems Solved</span>
+      </div>
+
+      <div class="stat-card">
+        <strong>454</strong>
+        <span>SkillRack Problems Solved</span>
+      </div>
+
+      <div class="stat-card">
+        <strong>15,058</strong>
+        <span>SkillRack Points</span>
+      </div>
+
+    </div>
+
+    <!-- EDUCATION -->
+    <h3 class="subheading mt-5">Education</h3>
+
+    <div class="education-item reveal">
+      <span class="timeline-dot"></span>
+
+      <div>
+        <h4>B.E. Computer Science and Engineering</h4>
+        <p>
+          Prince Shri Venkateshwara Padmavathy Engineering College,
+          Tamil Nadu, India
+        </p>
+        <span class="mono small-muted">
+          2024 — 2028 · Expected graduation
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="section-space section-alt" id="skills"
+         aria-labelledby="skills-title">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <p class="eyebrow">02 / MY TOOLKIT</p>
+      <h2 id="skills-title">Skills I'm building.</h2>
+      <p class="section-intro">
+        A practical toolkit shaped by coursework,
+        coding practice, projects, and curiosity.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-4">
+
+      <div class="col-md-6 reveal">
+        <div class="category-card h-100">
+          <h3><i class="bi bi-code-slash"></i> Programming Languages</h3>
+          <div class="category-tags">
+            <span>Java</span>
+            <span>JavaScript</span>
+            <span>Python</span>
+            <span>SQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 reveal">
+        <div class="category-card h-100">
+          <h3><i class="bi bi-window"></i> Frontend Development</h3>
+          <div class="category-tags">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>Bootstrap</span>
+            <span>React.js</span>
+            <span>Responsive Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 reveal">
+        <div class="category-card h-100">
+          <h3><i class="bi bi-hdd-stack"></i> Backend & Database</h3>
+          <div class="category-tags">
+            <span>Node.js</span>
+            <span>Express.js</span>
+            <span>MySQL</span>
+            <span>REST APIs</span>
+            <span>Socket.IO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 reveal">
+        <div class="category-card h-100">
+          <h3><i class="bi bi-tools"></i> Tools & Platforms</h3>
+          <div class="category-tags">
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>VS Code</span>
+            <span>Figma</span>
+            <span>Postman</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="section-space" id="projects" aria-labelledby="projects-title">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <p class="eyebrow">03 / SELECTED WORK</p>
+      <h2 id="projects-title">Things I've made.</h2>
+      <p class="section-intro">
+        Student projects and practical ideas brought to life.
+      </p>
+    </div>
+
+    <div class="filter-row reveal" role="group" aria-label="Filter projects">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+    </div>
+
+    <div class="row g-4 project-grid">
+
+      <article class="col-md-6 col-lg-6 project-item reveal" data-category="web">
+        <div class="project-card">
+          <div class="project-content">
+
+            <span class="project-type">FULL-STACK WEB APPLICATION</span>
+
+            <h3>Emergency SOS – Real-Time Emergency Assistance System</h3>
+
+            <p>
+              Developing a full-stack Emergency SOS web application
+              to help users send emergency alerts and share their
+              live location with emergency contacts.
+            </p>
+
+            <p>
+              Implementing user authentication, emergency contact
+              management, GPS-based location tracking, and
+              real-time alert updates using Socket.IO.
+            </p>
+
+            <div class="project-tags">
+              <span>React.js</span>
+              <span>Node.js</span>
+              <span>Express.js</span>
+              <span>MySQL</span>
+              <span>Socket.IO</span>
+              <span>JavaScript</span>
+            </div>
+
+            <div class="project-links">
+              <a href="https://github.com/bdharshini801"
+                 target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-github"></i> GitHub Profile
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS SECTION -->
+<section class="section-space section-alt" id="certifications"
+         aria-labelledby="certifications-title">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <p class="eyebrow">04 / CERTIFICATIONS</p>
+      <h2 id="certifications-title">
+        Learning beyond<br>
+        <span class="text-muted-custom">the classroom.</span>
+      </h2>
+      <p class="section-intro">
+        Certifications and learning experiences that
+        strengthen my technical knowledge and skills.
+      </p>
+    </div>
+
+    <div class="row g-4 mt-2">
+
+      <div class="col-md-6 reveal">
+        <div class="skill-card certification-card h-100">
+          <div class="cert-icon"><i class="bi bi-code-square"></i></div>
+          <span class="project-type">NPTEL</span>
+          <h3>Joy of Computing Using Python</h3>
+          <p>NPTEL course covering computing concepts and programming using Python.</p>
+          <span class="mono small-muted">Issued by NPTEL</span>
+        </div>
+      </div>
+
+      <div class="col-md-6 reveal">
+        <div class="skill-card certification-card h-100">
+          <div class="cert-icon"><i class="bi bi-briefcase"></i></div>
+          <span class="project-type">JOB SIMULATION</span>
+          <h3>Advanced Software Engineering</h3>
+          <p>Completed a job simulation experience focused on software engineering tasks.</p>
+          <span class="mono small-muted">Walmart Global Tech · Forage</span>
+        </div>
+      </div>
+
+      <div class="col-md-6 reveal">
+        <div class="skill-card certification-card h-100">
+          <div class="cert-icon"><i class="bi bi-cloud"></i></div>
+          <span class="project-type">MICROSOFT CERTIFICATION</span>
+          <h3>Microsoft Certified: Azure Fundamentals</h3>
+          <p>Foundational knowledge of Microsoft Azure cloud services and concepts.</p>
+          <span class="mono small-muted">Issued by Microsoft</span>
+        </div>
+      </div>
+
+      <div class="col-md-6 reveal">
+        <div class="skill-card certification-card h-100">
+          <div class="cert-icon"><i class="bi bi-robot"></i></div>
+          <span class="project-type">AI BADGE</span>
+          <h3>AI Aware Badge</h3>
+          <p>Recognition for foundational awareness of Artificial Intelligence.</p>
+          <span class="mono small-muted">AI For All</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE SECTION -->
+<section class="section-space section-alt" id="experience"
+         aria-labelledby="experience-title">
+  <div class="container">
+
+    <div class="section-heading reveal">
+      <p class="eyebrow">05 / EXPERIENCE & MILESTONES</p>
+      <h2 id="experience-title">Learning in the real world.</h2>
+      <p class="section-intro">
+        My academic journey, coding achievements, and collaborative experiences.
+      </p>
+    </div>
+
+    <div class="timeline mt-5">
+
+      <article class="timeline-entry reveal">
+        <span class="timeline-marker"></span>
+        <span class="timeline-date">CURRENTLY</span>
+        <h3>Computer Science and Engineering Student</h3>
+        <p>
+          Building practical web development skills through
+          coursework, coding practice, and academic projects.
+        </p>
+      </article>
+
+      <article class="timeline-entry reveal">
+        <span class="timeline-marker"></span>
+        <span class="timeline-date">CODING PRACTICE</span>
+        <h3>LeetCode · 170+ Problems Solved</h3>
+        <p>
+          Solved 170+ coding problems across Easy, Medium,
+          and Hard levels, with a strong focus on Java and
+          Data Structures and Algorithms.
+        </p>
+        <a href="https://leetcode.com/u/dharshini9/"
+           target="_blank" rel="noopener noreferrer">
+          View LeetCode Profile →
+        </a>
+      </article>
+
+      <article class="timeline-entry reveal">
+        <span class="timeline-marker"></span>
+        <span class="timeline-date">CODING PRACTICE</span>
+        <h3>GeeksforGeeks · 25+ Problems Solved</h3>
+        <p>
+          Solved 25+ problems covering Basic, Easy,
+          and Medium-level Data Structures and Algorithms.
+        </p>
+        <a href="https://www.geeksforgeeks.org/profile/bdharshita1"
+           target="_blank" rel="noopener noreferrer">
+          View GeeksforGeeks Profile →
+        </a>
+      </article>
+
+      <!-- SKILLRACK -->
+      <article class="timeline-entry reveal">
+        <span class="timeline-marker"></span>
+        <span class="timeline-date">CODING PRACTICE</span>
+        <h3>SkillRack · 454 Problems Solved</h3>
+
+        <p>
+          Practicing programming and strengthening coding
+          and problem-solving skills through SkillRack.
+        </p>
+
+        <div class="project-tags mb-3">
+          <span>454 Problems Solved</span>
+          <span>15,058 Points</span>
+        </div>
+
+        <a href="https://www.skillrack.com/"
+           target="_blank" rel="noopener noreferrer">
+          Visit SkillRack Profile →
+        </a>
+      </article>
+
+      <article class="timeline-entry reveal">
+        <span class="timeline-marker"></span>
+        <span class="timeline-date">2025 · HACKATHON</span>
+        <h3>Smart India Hackathon (SIH) 2025</h3>
+        <p>
+          Participated as a team member of <strong>Big Bug</strong>.
+          Proposed an innovative solution for microplastic detection
+          in water using fluorescence technology and Nile Red dye,
+          contributing to environmental protection and water
+          quality monitoring.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="section-space" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="row gy-5">
+
+      <div class="col-lg-5 reveal">
+        <p class="eyebrow">06 / SAY HELLO</p>
+
+        <h2 id="contact-title">
+          Have a good<br>
+          <span class="text-gradient">one in mind?</span>
+        </h2>
+
+        <p class="section-intro mt-3">
+          I'm open to internships, collaborations,
+          and interesting conversations.
+          Send a message and I'll get back to you.
+        </p>
+
+        <a class="contact-email" href="mailto:bdharshini801@gmail.com">
+          <i class="bi bi-envelope"></i>
+          bdharshini801@gmail.com
+        </a>
+      </div>
+
+      <div class="col-lg-7 reveal">
+        <form id="contactForm" novalidate>
+          <input type="hidden" name="_subject" value="Portfolio contact form">
+
+          <div class="row g-3">
+
+            <div class="col-sm-6">
+              <label for="name" class="form-label">Name</label>
+              <input id="name" class="form-control"
+                     name="name" autocomplete="name" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="email" class="form-label">Email</label>
+              <input id="email" class="form-control"
+                     name="email" type="email"
+                     autocomplete="email" required>
+              <div class="invalid-feedback">Enter a valid email address.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="subject" class="form-label">Subject</label>
+              <input id="subject" class="form-control"
+                     name="subject" required>
+              <div class="invalid-feedback">Please add a subject.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" class="form-control"
+                        name="message" rows="5"
+                        minlength="20" required></textarea>
+              <div class="invalid-feedback">
+                Please write at least 20 characters.
+              </div>
+            </div>
+
+            <div class="col-12 d-flex align-items-center gap-3">
+              <button class="btn btn-accent" type="submit">
+                Send message <i class="bi bi-send"></i>
+              </button>
+
+              <span id="formStatus" class="form-status"
+                    role="status" aria-live="polite"></span>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container d-flex flex-column flex-md-row
+              justify-content-between align-items-center gap-3">
+
+    <p>
+      © <span id="year"></span> Dharshini B.
+      Built with curiosity<span class="text-accent">.</span>
+    </p>
+
+    <div class="footer-links">
+
+      <a href="https://github.com/bdharshini801"
+         target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-github"></i>
+      </a>
+
+      <a href="https://www.linkedin.com/in/dharshini-b-7b74043aa"
+         target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-linkedin"></i>
+      </a>
+
+      <a href="mailto:bdharshini801@gmail.com">
+        <i class="bi bi-envelope"></i>
+      </a>
+
+      <a href="https://leetcode.com/u/dharshini9/"
+         target="_blank" rel="noopener noreferrer">LeetCode</a>
+
+      <a href="https://www.geeksforgeeks.org/profile/bdharshita1"
+         target="_blank" rel="noopener noreferrer">GFG</a>
+
+      <a href="https://www.skillrack.com/"
+         target="_blank" rel="noopener noreferrer">SkillRack</a>
+
+      <a href="#home" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+      </a>
+
+    </div>
+  </div>
+</footer>
+
+<!-- SUCCESS TOAST -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="successToast"
+       class="toast align-items-center text-bg-success border-0"
+       role="status" aria-live="polite" aria-atomic="true">
+
+    <div class="d-flex">
+      <div class="toast-body">
+        Thanks! Your message has been sent.
+      </div>
+
+      <button type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close">
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
